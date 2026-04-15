@@ -1,0 +1,9 @@
+CREATE TABLE raw_intake_question (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  text TEXT NOT NULL,
+  source VARCHAR(100),
+  count INTEGER DEFAULT 1,
+  status VARCHAR(20) DEFAULT 'UNSORTED', -- UNSORTED, CLUSTERED, DISCARDED
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

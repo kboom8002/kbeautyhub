@@ -1,0 +1,146 @@
+version: v1
+vertical_id: V-KBS
+
+objects:
+  - object_id: OBJ-ANS-0101
+    object_type: AnswerObject
+    canonical_question_id: CQ-FIT-004
+    title: 이 제품은 민감 피부에 맞나?
+    answer_short: 민감 피부에도 사용할 수 있지만, 자극 우려 성분과 현재 루틴을 함께 확인해야 한다.
+    answer_full: 민감 피부 적합성은 성분 강도, 향료 여부, 사용 빈도, 병행 루틴에 따라 달라진다.
+    decision_criteria:
+      - label: 성분 자극 강도
+        explanation: 활성 성분 강도와 도입 빈도를 확인
+      - label: 루틴 복잡도
+        explanation: 현재 병행 제품 수와 조합 자극 가능성 확인
+    fit_summary:
+      recommended_for:
+        - 민감 피부 입문
+      caution_for:
+        - 고기능 성분 병행 사용자
+      not_for:
+        - 최근 강한 자극 경험자
+    linked_proof_object_ids:
+      - OBJ-PRF-0043
+    linked_boundary_object_ids:
+      - OBJ-BND-0091
+    linked_action_object_ids:
+      - OBJ-ACT-0032
+    status: draft
+
+  - object_id: OBJ-PRF-0043
+    object_type: ProofObject
+    canonical_question_id: CQ-PROOF-001
+    title: 민감 피부 적합성 claim의 근거
+    claim_text: 이 제품은 민감 피부에 조건부 적합할 수 있다.
+    claim_scope:
+      applies_to:
+        - 민감 피부
+        - 초보 입문
+      does_not_apply_to:
+        - 최근 강한 자극 경험자
+    evidence_items:
+      - evidence_id: EVD-441
+        role: protocol_doc
+        strength: high
+    reviewer_statements:
+      - person_id: PER-102
+        scope: 민감 피부 루틴 검토
+        statement_summary: 민감 피부 기준에서 조건부 적합
+    confidence_level: medium_high
+    evidence_grade: A
+    limitations:
+      - 개인 피부 반응 차이가 크다
+    linked_answer_object_ids:
+      - OBJ-ANS-0101
+    status: draft
+
+  - object_id: OBJ-BND-0091
+    object_type: BoundaryObject
+    canonical_question_id: CQ-BOUNDARY-001
+    title: 민감 피부 적합성의 경계 조건
+    do_not_misread:
+      - 민감 피부 적합성이 모든 민감 반응 가능성을 없앤다는 뜻은 아니다.
+    caution_cases:
+      - case_id: CAU-001
+        label: 최근 자극/홍조 악화 경험
+        severity: high
+        recommended_route: consult_gate
+    incompatible_conditions:
+      - 강한 각질 루틴과 동시 도입
+    expectation_boundaries:
+      - 개인 상태에 따라 체감 차이가 크다
+    escalation_rules:
+      - trigger: 지속적 자극 또는 악화
+        route: expert_consult
+    linked_proof_object_ids:
+      - OBJ-PRF-0043
+    linked_action_object_ids:
+      - OBJ-ACT-0032
+    status: draft
+
+  - object_id: OBJ-ACT-0032
+    object_type: ActionObject
+    canonical_question_id: CQ-ACTION-002
+    title: 구매 vs 상담 결정
+    action_type: decision_routing
+    action_goal: 사용자 상황에 맞는 다음 행동 선택
+    eligibility_rules:
+      - rule_id: ELG-001
+        if: risk_level == low and fit_confidence >= 0.7
+        then: show_buy_cta
+      - rule_id: ELG-002
+        if: boundary_flag == true
+        then: show_consult_cta_first
+    recommended_routes:
+      - route_id: R-001
+        label: 바로 구매
+        conditions:
+          - fit_confirmed
+          - low_risk
+        target: brand_buy_page
+      - route_id: R-002
+        label: 상담 먼저
+        conditions:
+          - high_risk
+          - boundary_flag
+        target: consult_gate
+    linked_boundary_object_ids:
+      - OBJ-BND-0091
+    linked_answer_object_ids:
+      - OBJ-ANS-0101
+    status: draft
+
+  - object_id: OBJ-CMP-0021
+    object_type: CompareObject
+    canonical_question_id: CQ-COMPARE-004
+    title: 장벽 크림 vs 수분 크림
+    compare_targets:
+      - target_id: TGT-001
+        label: 장벽 크림
+        type: product_type
+      - target_id: TGT-002
+        label: 수분 크림
+        type: product_type
+    difference_dimensions:
+      - dimension: 핵심 목적
+        target_values:
+          TGT-001: 장벽 보완/보호
+          TGT-002: 수분 공급/가벼운 보습
+      - dimension: 추천 상황
+        target_values:
+          TGT-001: 건조/장벽 약화
+          TGT-002: 지성/가벼운 마무리
+    fit_by_case:
+      - case: 장벽 약화 + 민감
+        best_target_id: TGT-001
+        why: 보호막 보완 우선
+      - case: 지성 + 여름철
+        best_target_id: TGT-002
+        why: 무거움 최소화
+    trade_offs:
+      - 장벽 크림은 보호감이 크지만 무겁게 느껴질 수 있다
+      - 수분 크림은 가볍지만 회복기에는 부족할 수 있다
+    recommendation_logic:
+      primary_question: 피부가 건조하고 예민한가?
+    status: draft

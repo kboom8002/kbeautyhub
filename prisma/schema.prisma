@@ -1,0 +1,97 @@
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Brand {
+  brand_id        String          @id @default(uuid())
+  name            String
+  readiness_score Float?
+  objects         KBeautyObject[]
+}
+
+model KBeautyObject {
+  object_id             String  @id @default(uuid())
+  brand_id              String
+  template_id           String?
+  object_type           String
+  canonical_question_id String?
+  status                String  @default("draft")
+  payload               String  // Stored as JSON string due to SQLite limitation
+  is_stale              Boolean @default(false)
+  created_at            DateTime @default(now())
+  updated_at            DateTime @updatedAt
+
+  brand Brand @relation(fields: [brand_id], references: [brand_id])
+
+  @@index([brand_id, object_type])
+  @@index([canonical_question_id])
+}
+
+model AuditLog {
+  log_id          String  @id @default(uuid())
+  action          String
+  target_brand_id String?
+  reason          String
+  timestamp       DateTime @default(now())
+  actor_id        String
+}
+
+model PersonSSoT {
+  person_id           String   @id @default(uuid())
+  display_name        String
+  person_type         String   // e.g. domain_reviewer, external_expert, governance_admin
+  headline_role       String?
+  organization        String?
+  credentials_summary String?
+  bio_short           String?
+  active_status       String   @default("active")  // active, inactive
+  visibility_status   String   @default("private_internal") // private_internal, public_summary, public_profile, hidden
+  last_reviewed_at    DateTime?
+  created_at          DateTime @default(now())
+  updated_at          DateTime @updatedAt
+
+  review_scopes       ReviewScope[]
+  userAccount         UserAccount?
+}
+
+model ReviewScope {
+  scope_id      String   @id @default(uuid())
+  person_id     String
+  layer         String   // layer of coverage e.g., 'primary_claim', 'ingredient_safety', 'mri_analysis'
+  category      String   // category of coverage e.g., 'acne', 'skincare', 'general'
+  valid_until   DateTime?
+  status        String   @default("active")
+  
+  person        PersonSSoT @relation(fields: [person_id], references: [person_id])
+  
+  @@index([person_id])
+}
+
+model UserAccount {
+  user_id       String     @id @default(uuid())
+  supabase_uid  String?    @unique // Matches auth.users.id when integrated
+  role          String     @default("expert") // e.g., master, governance_admin, brand_admin, expert
+  tenant_id     String     @default("SYSTEM") // SYSTEM for internal, BRAND-XXX for brands
+  person_id     String?    @unique // If role is expert or general user, maps to PersonSSoT
+  email         String     @unique
+  created_at    DateTime   @default(now())
+  updated_at    DateTime   @updatedAt
+
+  person        PersonSSoT? @relation(fields: [person_id], references: [person_id])
+}
+
+model TenantApplication {
+  application_id    String    @id @default(uuid())
+  applicant_type    String    // "brand" or "expert"
+  applicant_name    String
+  email             String
+  company_or_clinic String?
+  status            String    @default("pending") // pending, approved, rejected
+  submitted_at      DateTime  @default(now())
+  reviewed_at       DateTime?
+}

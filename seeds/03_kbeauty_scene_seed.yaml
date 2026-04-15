@@ -1,0 +1,152 @@
+version: v1
+vertical_id: V-KBS
+scenes:
+  - id: QIS-KBS-001
+    canonical_question_id: CQ-ENTRY-003
+    scene_title: 민감 피부 초보 루틴 진입
+    representative_query: 민감 피부 루틴 뭐부터 시작
+    intent: discover
+    scenario: 초보_입문
+    persona_origin: problem_led_novice
+    decision_stage: discover
+    risk_level: medium
+    trust_requirement: high
+    required_objects:
+      - AnswerObject
+      - BoundaryObject
+      - ActionObject
+    surface_targets:
+      - SH-TOPIC-ANSWER
+      - SH-ROUTINE-GUIDE
+    primary_success_metric: next_question_ctr
+
+  - id: QIS-KBS-002
+    canonical_question_id: CQ-ENTRY-004
+    scene_title: 장벽 약화 의심 시 루틴 축소 진입
+    representative_query: 장벽 무너졌을 때 스킨케어
+    intent: discover
+    scenario: 고민_진입
+    persona_origin: risk_sensitive_user
+    decision_stage: frame
+    risk_level: high
+    trust_requirement: very_high
+    required_objects:
+      - AnswerObject
+      - BoundaryObject
+      - ActionObject
+    surface_targets:
+      - SH-TOPIC-ANSWER
+      - SH-BOUNDARY-CONSULT
+    primary_success_metric: safe_handoff_rate
+
+  - id: QIS-KBS-004
+    canonical_question_id: CQ-FIT-004
+    scene_title: 민감 피부 적합성 판단
+    representative_query: 민감 피부도 이 제품 써도 되나
+    intent: fit
+    scenario: 제품_상세_검토
+    persona_origin: risk_sensitive_user
+    decision_stage: evaluate
+    risk_level: high
+    trust_requirement: very_high
+    required_objects:
+      - AnswerObject
+      - BoundaryObject
+      - ProofObject
+    surface_targets:
+      - SH-TOPIC-ANSWER
+      - SB-BRAND-FIT
+    primary_success_metric: fit_to_action_ctr
+
+  - id: QIS-KBS-010
+    canonical_question_id: CQ-ING-006
+    scene_title: 성분 병행 사용 안전성 판단
+    representative_query: 비타민C 레티놀 같이 써도 되나
+    intent: safety
+    scenario: 자극_우려
+    persona_origin: risk_sensitive_user
+    decision_stage: trust_check
+    risk_level: high
+    trust_requirement: very_high
+    required_objects:
+      - BoundaryObject
+      - ProofObject
+      - AnswerObject
+    surface_targets:
+      - SH-BOUNDARY-CONSULT
+      - SH-TRUST-PROOF
+    primary_success_metric: safe_handoff_rate
+
+  - id: QIS-KBS-011
+    canonical_question_id: CQ-COMPARE-004
+    scene_title: 장벽 크림 vs 수분 크림 선택
+    representative_query: 장벽 크림 수분 크림 차이
+    intent: compare
+    scenario: 비교_선택
+    persona_origin: compare_driven_shopper
+    decision_stage: compare
+    risk_level: medium
+    trust_requirement: high
+    required_objects:
+      - CompareObject
+      - BoundaryObject
+      - ActionObject
+    surface_targets:
+      - SH-COMPARE
+    primary_success_metric: compare_to_choice_ctr
+
+  - id: QIS-KBS-015
+    canonical_question_id: CQ-USE-004
+    scene_title: 자극 최소화 도입 스케줄
+    representative_query: 레티놀 어떻게 천천히 시작
+    intent: act
+    scenario: 사용법_실행
+    persona_origin: risk_sensitive_user
+    decision_stage: act
+    risk_level: high
+    trust_requirement: very_high
+    required_objects:
+      - ActionObject
+      - BoundaryObject
+      - ProofObject
+    surface_targets:
+      - SH-ROUTINE-GUIDE
+      - SH-BOUNDARY-CONSULT
+    primary_success_metric: recovery_completion_rate
+
+  - id: QIS-KBS-018
+    canonical_question_id: CQ-BOUNDARY-004
+    scene_title: 일반 추천 대신 상담이 필요한지 판정
+    representative_query: 이건 피부과 상담이 필요한 상황인가
+    intent: safety
+    scenario: 자극_우려
+    persona_origin: risk_sensitive_user
+    decision_stage: trust_check
+    risk_level: high
+    trust_requirement: very_high
+    required_objects:
+      - BoundaryObject
+      - ActionObject
+      - ProofObject
+    surface_targets:
+      - SH-BOUNDARY-CONSULT
+    primary_success_metric: consult_route_rate
+
+  - id: QIS-KBS-020
+    canonical_question_id: CQ-ACTION-002
+    scene_title: 구매 vs 상담 결정
+    representative_query: 지금 바로 사도 돼 아니면 상담 먼저야
+    intent: act
+    scenario: 상담_전환
+    persona_origin: action_ready_user
+    decision_stage: act
+    risk_level: high
+    trust_requirement: high
+    required_objects:
+      - ActionObject
+      - BoundaryObject
+      - ProofObject
+    surface_targets:
+      - SH-ACTION-HUB
+      - SB-BUY-OR-CONSULT
+    primary_success_metric: action_start_rate

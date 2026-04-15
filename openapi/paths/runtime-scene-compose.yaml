@@ -1,0 +1,34 @@
+post:
+  tags: [Runtime]
+  summary: Compose object bundle for a resolved scene
+  operationId: runtimeSceneCompose
+  parameters:
+    - name: sceneId
+      in: path
+      required: true
+      schema:
+        type: string
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../components/schemas-domain.yaml#/SceneComposeRequest'
+  responses:
+    '200':
+      description: Scene bundle composed
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../components/schemas-common.yaml#/ApiSuccessEnvelope'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../components/schemas-objects.yaml#/ObjectBundle'
+    '400':
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas-common.yaml#/ApiErrorEnvelope'

@@ -1,0 +1,77 @@
+PersonSSoT:
+  type: object
+  required:
+    - person_id
+    - display_name
+    - person_type
+    - visibility_status
+    - active_status
+  properties:
+    person_id:
+      type: string
+    display_name:
+      type: string
+    person_type:
+      type: string
+    visibility_status:
+      type: string
+      enum:
+        - private_internal
+        - public_summary
+        - public_profile
+        - hidden
+    active_status:
+      type: string
+      enum: [active, inactive]
+    review_scopes:
+      type: array
+      items:
+        type: object
+        additionalProperties: true
+
+EvidenceSSoT:
+  type: object
+  required:
+    - evidence_id
+    - title
+    - evidence_type
+    - summary
+    - provenance
+    - validity_window
+    - evidence_grade
+    - status
+    - last_validated_at
+  properties:
+    evidence_id:
+      type: string
+    title:
+      type: string
+    evidence_type:
+      type: string
+    summary:
+      type: string
+    provenance:
+      type: object
+      additionalProperties: true
+    validity_window:
+      type: object
+      additionalProperties: true
+    freshness_policy:
+      type: object
+      additionalProperties: true
+    evidence_grade:
+      type: string
+      enum: [A, B, C, D]
+    confidence_level:
+      type: string
+      enum: [low, medium, high, very_high]
+    status:
+      type: string
+      enum: [active, stale_warning, stale_critical, archived]
+    last_validated_at:
+      type: string
+      format: date-time
+    limitations:
+      type: array
+      items:
+        type: string

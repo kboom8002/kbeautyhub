@@ -1,0 +1,85 @@
+RuntimeQueryResolveRequest:
+  type: object
+  required:
+    - vertical_id
+    - query
+  properties:
+    vertical_id:
+      type: string
+    query:
+      type: string
+    brand_scope_id:
+      type: [string, "null"]
+    user_context:
+      type: object
+      additionalProperties: true
+
+SceneResolveResult:
+  type: object
+  required:
+    - canonical_question_id
+    - scene_id
+    - confidence
+    - risk_level
+  properties:
+    canonical_question_id:
+      type: string
+    scene_id:
+      type: string
+    confidence:
+      type: number
+      minimum: 0
+      maximum: 1
+    risk_level:
+      $ref: './schemas-common.yaml#/RiskLevel'
+    surface_recommendation:
+      type: string
+    fallback_scene_ids:
+      type: array
+      items:
+        type: string
+
+SceneComposeRequest:
+  type: object
+  required:
+    - tenant_scope
+  properties:
+    tenant_scope:
+      type: object
+      required:
+        - type
+        - id
+      properties:
+        type:
+          type: string
+          enum: [vertical, brand, shared]
+        id:
+          type: string
+    brand_scope:
+      type: [object, "null"]
+      additionalProperties: true
+    user_context:
+      type: object
+      additionalProperties: true
+    risk_policy:
+      type: string
+
+CanonicalQuestion:
+  type: object
+  required:
+    - canonical_question_id
+    - family_code
+    - title
+    - primary_object_type
+    - risk_level
+  properties:
+    canonical_question_id:
+      type: string
+    family_code:
+      type: string
+    title:
+      type: string
+    primary_object_type:
+      type: string
+    risk_level:
+      $ref: './schemas-common.yaml#/RiskLevel'

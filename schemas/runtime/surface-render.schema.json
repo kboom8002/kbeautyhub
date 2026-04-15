@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SurfaceRenderPayload",
+  "type": "object",
+  "required": ["projection_id", "surface_id", "variant", "slots"],
+  "properties": {
+    "projection_id": { "type": "string" },
+    "surface_id": { "type": "string" },
+    "variant": { "type": "string" },
+    "slots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slot_id", "slot_type", "required", "visible"],
+        "properties": {
+          "slot_id": { "type": "string" },
+          "slot_type": {
+            "type": "string",
+            "enum": ["hero", "block", "rail", "card", "inline"]
+          },
+          "required": { "type": "boolean" },
+          "visible": { "type": "boolean" },
+          "render_variant": { "type": ["string", "null"] },
+          "fallback_variant": { "type": ["string", "null"] },
+          "data": { "type": "object" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

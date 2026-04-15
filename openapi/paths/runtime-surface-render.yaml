@@ -1,0 +1,43 @@
+get:
+  tags: [Runtime]
+  summary: Render a runtime surface payload
+  operationId: runtimeSurfaceRender
+  parameters:
+    - name: surfaceId
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: scene_id
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: tenant_id
+      in: query
+      required: true
+      schema:
+        type: string
+    - name: brand_id
+      in: query
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Surface payload rendered
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../components/schemas-common.yaml#/ApiSuccessEnvelope'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../components/schemas-objects.yaml#/SurfaceRenderPayload'
+    '409':
+      description: Surface render blocked by trust or boundary policy
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas-common.yaml#/ApiErrorEnvelope'

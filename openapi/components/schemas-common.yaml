@@ -1,0 +1,84 @@
+ApiSuccessEnvelope:
+  type: object
+  required:
+    - success
+    - trace_id
+    - data
+  properties:
+    success:
+      type: boolean
+      const: true
+    trace_id:
+      type: string
+    data:
+      type: object
+    meta:
+      type: object
+      additionalProperties: true
+
+ApiErrorEnvelope:
+  type: object
+  required:
+    - success
+    - trace_id
+    - error
+  properties:
+    success:
+      type: boolean
+      const: false
+    trace_id:
+      type: string
+    error:
+      $ref: '#/ErrorDetail'
+
+ErrorDetail:
+  type: object
+  required:
+    - code
+    - message
+  properties:
+    code:
+      type: string
+      enum:
+        - VALIDATION_ERROR
+        - NOT_FOUND
+        - PERMISSION_DENIED
+        - REVIEW_SCOPE_INVALID
+        - EVIDENCE_STALE_BLOCKED
+        - BOUNDARY_REQUIRED
+        - SURFACE_RENDER_BLOCKED
+        - RETEST_REQUIRED
+        - INTERNAL_ERROR
+    message:
+      type: string
+    details:
+      type: object
+      additionalProperties: true
+    retryable:
+      type: boolean
+
+RiskLevel:
+  type: string
+  enum: [low, medium, high]
+
+Status:
+  type: string
+  enum:
+    - draft
+    - in_review
+    - review_blocked
+    - approved
+    - published
+    - deprecated
+    - archived
+    - blocked
+    - paused
+
+ReviewState:
+  type: string
+  enum:
+    - unreviewed
+    - evidence_attached
+    - reviewed
+    - conditional_reviewed
+    - rejected

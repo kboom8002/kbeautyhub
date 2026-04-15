@@ -1,0 +1,25 @@
+post:
+  tags: [Governance]
+  summary: Create a patch ticket
+  operationId: governanceCreatePatch
+  security:
+    - bearerAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          additionalProperties: true
+  responses:
+    '201':
+      description: Patch ticket created
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../components/schemas-common.yaml#/ApiSuccessEnvelope'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../components/schemas-governance.yaml#/PatchTicket'

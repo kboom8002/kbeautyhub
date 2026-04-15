@@ -1,0 +1,34 @@
+post:
+  tags: [Runtime]
+  summary: Resolve a user query into canonical question and QIS scene
+  operationId: runtimeQueryResolve
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../components/schemas-domain.yaml#/RuntimeQueryResolveRequest'
+  responses:
+    '200':
+      description: Successful query resolution
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../components/schemas-common.yaml#/ApiSuccessEnvelope'
+              - type: object
+                properties:
+                  data:
+                    $ref: '../components/schemas-domain.yaml#/SceneResolveResult'
+    '400':
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas-common.yaml#/ApiErrorEnvelope'
+    '404':
+      description: No scene resolved
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas-common.yaml#/ApiErrorEnvelope'

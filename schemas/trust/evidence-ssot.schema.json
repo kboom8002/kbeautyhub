@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EvidenceSSoT",
+  "type": "object",
+  "required": [
+    "evidence_id",
+    "title",
+    "evidence_type",
+    "summary",
+    "provenance",
+    "validity_window",
+    "evidence_grade",
+    "status",
+    "last_validated_at"
+  ],
+  "properties": {
+    "evidence_id": { "type": "string" },
+    "title": { "type": "string" },
+    "evidence_type": { "type": "string" },
+    "summary": { "type": "string" },
+    "provenance": { "type": "object" },
+    "validity_window": { "type": "object" },
+    "freshness_policy": { "type": "object" },
+    "evidence_grade": { "type": "string", "enum": ["A", "B", "C", "D"] },
+    "confidence_level": { "type": "string", "enum": ["low", "medium", "high", "very_high"] },
+    "status": {
+      "type": "string",
+      "enum": ["active", "stale_warning", "stale_critical", "archived"]
+    },
+    "last_validated_at": { "type": "string", "format": "date-time" },
+    "limitations": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}

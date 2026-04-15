@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MRIAlert",
+  "type": "object",
+  "required": [
+    "alert_id",
+    "mri_type",
+    "entity_type",
+    "entity_id",
+    "metric_key",
+    "severity",
+    "status"
+  ],
+  "properties": {
+    "alert_id": { "type": "string" },
+    "mri_type": { "type": "string", "enum": ["D-MRI", "B-MRI"] },
+    "entity_type": { "type": "string" },
+    "entity_id": { "type": "string" },
+    "metric_key": { "type": "string" },
+    "deviation": { "type": "number" },
+    "severity": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+    "suspected_rca_codes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "status": { "type": "string", "enum": ["open", "acknowledged", "routed", "closed"] }
+  },
+  "additionalProperties": false
+}

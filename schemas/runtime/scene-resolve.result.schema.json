@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SceneResolveResult",
+  "type": "object",
+  "required": [
+    "canonical_question_id",
+    "scene_id",
+    "confidence",
+    "risk_level"
+  ],
+  "properties": {
+    "canonical_question_id": { "type": "string" },
+    "scene_id": { "type": "string" },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "risk_level": { "type": "string", "enum": ["low", "medium", "high"] },
+    "surface_recommendation": { "type": "string" },
+    "fallback_scene_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}

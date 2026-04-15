@@ -1,0 +1,26 @@
+post:
+  tags: [Admin]
+  summary: Create an object draft
+  operationId: adminCreateObject
+  security:
+    - bearerAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          additionalProperties: true
+  responses:
+    '201':
+      description: Object created
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas-common.yaml#/ApiSuccessEnvelope'
+    '400':
+      description: Validation error
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas-common.yaml#/ApiErrorEnvelope'

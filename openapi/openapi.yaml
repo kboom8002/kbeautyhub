@@ -1,0 +1,65 @@
+openapi: 3.1.0
+info:
+  title: Answer OS API
+  version: 0.1.0
+  description: >
+    Runtime, Admin, Governance, MRI APIs for Answer Operating System,
+    Vertical AEO Hub, and Brand Mini B-SSoT.
+
+servers:
+  - url: https://api.example.com
+    description: Production
+  - url: https://staging-api.example.com
+    description: Staging
+
+tags:
+  - name: Runtime
+  - name: Admin
+  - name: Governance
+  - name: MRI
+  - name: Ops
+
+paths:
+  /api/v1/runtime/query-resolve:
+    $ref: './paths/runtime-query-resolve.yaml'
+  /api/v1/runtime/scenes/{sceneId}/compose:
+    $ref: './paths/runtime-scene-compose.yaml'
+  /api/v1/runtime/surfaces/{surfaceId}:
+    $ref: './paths/runtime-surface-render.yaml'
+  /api/v1/admin/objects:
+    $ref: './paths/admin-object.yaml'
+  /api/v1/governance/patches:
+    $ref: './paths/governance-patch.yaml'
+  /api/v1/mri/alerts:
+    $ref: './paths/mri-alerts.yaml'
+
+components:
+  schemas:
+    ApiSuccessEnvelope:
+      $ref: './components/schemas-common.yaml#/ApiSuccessEnvelope'
+    ApiErrorEnvelope:
+      $ref: './components/schemas-common.yaml#/ApiErrorEnvelope'
+    RuntimeQueryResolveRequest:
+      $ref: './components/schemas-domain.yaml#/RuntimeQueryResolveRequest'
+    SceneResolveResult:
+      $ref: './components/schemas-domain.yaml#/SceneResolveResult'
+    SceneComposeRequest:
+      $ref: './components/schemas-domain.yaml#/SceneComposeRequest'
+    ObjectBundle:
+      $ref: './components/schemas-objects.yaml#/ObjectBundle'
+    SurfaceRenderPayload:
+      $ref: './components/schemas-objects.yaml#/SurfaceRenderPayload'
+    AnswerObject:
+      $ref: './components/schemas-objects.yaml#/AnswerObject'
+    EvidenceSSoT:
+      $ref: './components/schemas-trust.yaml#/EvidenceSSoT'
+    PatchTicket:
+      $ref: './components/schemas-governance.yaml#/PatchTicket'
+    MRIAlert:
+      $ref: './components/schemas-mri.yaml#/MRIAlert'
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

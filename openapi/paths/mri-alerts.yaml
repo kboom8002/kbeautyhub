@@ -1,0 +1,38 @@
+get:
+  tags: [MRI]
+  summary: List MRI alerts
+  operationId: mriListAlerts
+  security:
+    - bearerAuth: []
+  parameters:
+    - name: mri_type
+      in: query
+      required: false
+      schema:
+        type: string
+        enum: [D-MRI, B-MRI]
+    - name: severity
+      in: query
+      required: false
+      schema:
+        type: string
+        enum: [low, medium, high, critical]
+    - name: status
+      in: query
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Alert list
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '../components/schemas-common.yaml#/ApiSuccessEnvelope'
+              - type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '../components/schemas-mri.yaml#/MRIAlert'

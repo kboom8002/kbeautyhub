@@ -1,0 +1,124 @@
+{
+  "Root": {
+    "sysOnline": "KBeautyHub 시스템 온라인",
+    "title": "KBeauty 샌드박스 OS",
+    "subtitle": "엔터프라이즈 콘텐츠 큐레이션, 검증 거버넌스 및 도메인 주도 설계(DDD) 기반 인텔리전스",
+    "masterAdmin": {
+      "title": "마스터 관리자",
+      "desc": "시스템 전역 설정, 택소노미(분류체계) 제어 및 테넌트 포괄 관리",
+      "action": "포털 입장하기"
+    },
+    "brandAdmin": {
+      "title": "브랜드 관리자",
+      "desc": "캠페인 현황, 지식 신디케이션 및 정산 관리를 위한 B2B 파트너 콘솔",
+      "action": "포털 입장하기"
+    },
+    "expertPortal": {
+      "title": "전문가 포털",
+      "desc": "전문가가 답변을 검토, 발행 및 정산을 관리할 수 있는 전용 워크스페이스",
+      "action": "포털 입장하기"
+    },
+    "sandbox": {
+      "title": "샌드박스",
+      "desc": "렌더링 환경 다변화 테스트, 위젯 임베딩 및 내부 API 모의 테스트 공간",
+      "action": "포털 입장하기"
+    },
+    "footer": "KBeautyHub 도메인 로직 설정"
+  },
+  "Login": {
+    "title": "보안 터미널 자격 증명",
+    "subtitle": "역할 기반 접근 제어(RBAC) 시스템 구동 중",
+    "identifier": "사용자 식별자(이메일)",
+    "selectPersona": "접속할 페르소나 권한을 선택하세요...",
+    "password": "비밀번호",
+    "authenticate": "보안 로그인 인증",
+    "authenticating": "인증 정보 확인 중..."
+  },
+  "Apply": {
+    "title": "KBeauty 에코시스템 기반 입점 신청",
+    "subtitle": "플랫폼의 공식 브랜드 파트너사 또는 검증된 전문가 리뷰어로 등록을 신청합니다.",
+    "expert": "전문가 리뷰어",
+    "brand": "브랜드 파트너사",
+    "expertNameLabel": "성함 및 전문 직함 *",
+    "brandNameLabel": "담당자 성함 *",
+    "emailLabel": "업무용(공식) 이메일 *",
+    "expertOrgLabel": "소속 및 클리닉명 *",
+    "brandOrgLabel": "담당 브랜드명 *",
+    "submit": "합류 신청서 제출",
+    "submitting": "보안 통신으로 전송 중...",
+    "receivedTitle": "제출이 완료되었습니다",
+    "receivedDesc": "신청해주셔서 감사합니다. 마스터 거버넌스가 내용을 검토한 후 승인이 완료되면 기재하신 이메일로 접속 자격 증명이 자동 발송됩니다.",
+    "returnHome": "홈으로 돌아가기"
+  },
+  "AdminApplications": {
+    "title": "신규 테넌트 가입 및 심사 대기열",
+    "subtitle": "KBeauty OS 합류를 희망하는 브랜드 및 전문가들의 신청을 검토하고 프로비저닝 합니다.",
+    "colInfo": "신청자 정보",
+    "colType": "유형",
+    "colOrg": "조직 / 브랜드",
+    "colDate": "신청일",
+    "colStatus": "심사 / 동작",
+    "typeBrand": "브랜드 파트너",
+    "typeExpert": "신규 전문가",
+    "syncing": "대기열 데이터를 동기화 중입니다...",
+    "empty": "현재 심사를 기다리는 대기열이 없습니다.",
+    "approved": "승인 완료됨",
+    "rejected": "반려 처리됨"
+  },
+  "AdminPeople": {
+    "title": "People SSoT 전문 인력 제어",
+    "subtitle": "전문가 테넌트, 리뷰어 및 시스템 인력에 대한 소스 권한 맵핑 중앙 관리 시스템.",
+    "addNew": "신규 전문가 강제 할당",
+    "formTitle": "초기 프로필 생성 등록",
+    "formName": "표시 명칭 *",
+    "formType": "역할 유형 *",
+    "formOrg": "조속 조직",
+    "formHeadline": "주요 직함 (예: 피부과 전문의)",
+    "formVisibility": "기본 가시성 수준",
+    "submitBtn": "시스템에 영구 편성",
+    "colInfo": "성명 및 조직",
+    "colType": "역할",
+    "colVisibility": "프로필 가시성",
+    "colStatus": "활성 상태",
+    "colDate": "편성일",
+    "loading": "전문가 파이프라인 동기화 중...",
+    "empty": "등록된 전문가가 없습니다."
+  },
+  "BrandAdmin": {
+    "title": "브랜드 파트너 에셋 콘솔",
+    "subtitle": "플랫폼에 등록된 검증 자산 현황을 조회하고 자사몰용 위젯 코드를 스니펫으로 발급받습니다.",
+    "colID": "자산 식별자 (ID)",
+    "colType": "데이터 유형",
+    "colStatus": "검증 상태",
+    "colAction": "동작 / 신디케이션",
+    "empty": "현재 이식 가능한 검증 자산이 존재하지 않습니다.",
+    "btnCopy": "위젯 코드 복사",
+    "copied": "복사 완료!",
+    "btnPreview": "미리보기",
+    "previewTitle": "위젯 렌더링 미리보기",
+    "draft": "작성 중",
+    "verified": "전문가 인증됨",
+    "btnAddAsset": "새 자산 등록"
+  },
+  "Embed": {
+    "badgeTitle": "KBeautyHub 공식 검증 완료",
+    "expertNotice": "피부과 전문의 리뷰 승인",
+    "readMore": "상세 분석 리포트 확인하기",
+    "watermarkLabel": "KBeauty SSoT Verified Media"
+  },
+  "ExpertPortal": {
+    "title": "전문가 큐레이션 워크스페이스",
+    "subtitle": "브랜드가 요청한 성분 데이터를 팩트체크하고 AI 초안을 검증하여 발행하세요.",
+    "tabPending": "검토 대기열",
+    "tabCompleted": "완료된 검토",
+    "aiDraftTitle": "🤖 AI 작성 초안 분석 (블로그 톤)",
+    "btnApprove": "이상없음 (원클릭 발행)",
+    "btnReject": "수정 요청",
+    "approvedMsg": "위젯 승인 처리되었습니다!",
+    "noPending": "현재 대기 중인 검증 요청이 없습니다.",
+    "rejectModalTitle": "초안 수정 지침 작성",
+    "rejectModalDesc": "이브랜드 측 담당자가 소스 데이터를 올바르게 보완할 수 있도록, 전문가로서 명확한 수정 방향을 지시해 주세요.",
+    "rejectPlaceholder": "예: 임상 수치 부분을 좀 더 보수적으로 서술해 주세요...",
+    "btnSubmitReject": "수정 요청 보내기"
+  }
+}

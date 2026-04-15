@@ -1,0 +1,138 @@
+version: v1
+vertical_id: V-KBS
+canonical_questions:
+  - id: CQ-ENTRY-001
+    family: ENTRY
+    title: 내 피부 고민에는 어떤 스킨케어 접근이 맞나?
+    layer: common
+    primary_object_type: AnswerObject
+    risk_level: medium
+    priority: P1
+
+  - id: CQ-ENTRY-003
+    family: ENTRY
+    title: 민감하고 쉽게 자극받을 때 어떤 루틴부터 시작해야 하나?
+    layer: common
+    primary_object_type: AnswerObject
+    risk_level: high
+    priority: P1
+
+  - id: CQ-ENTRY-004
+    family: ENTRY
+    title: 장벽이 약해진 것 같을 때 무엇을 줄이고 무엇을 써야 하나?
+    layer: niche
+    primary_object_type: AnswerObject
+    risk_level: high
+    priority: P1
+
+  - id: CQ-FIT-004
+    family: FIT
+    title: 이 제품은 민감 피부에 맞나?
+    layer: common
+    primary_object_type: AnswerObject
+    secondary_object_types:
+      - BoundaryObject
+      - ProofObject
+    risk_level: high
+    priority: P1
+
+  - id: CQ-FIT-005
+    family: FIT
+    title: 이 고기능 성분은 초보자도 시작할 수 있나?
+    layer: common
+    primary_object_type: AnswerObject
+    secondary_object_types:
+      - BoundaryObject
+      - ProofObject
+    risk_level: high
+    priority: P1
+
+  - id: CQ-TYPE-002
+    family: TYPE
+    title: 에센스, 세럼, 앰플은 무엇이 어떻게 다른가?
+    layer: common
+    primary_object_type: AnswerObject
+    risk_level: low
+    priority: P1
+
+  - id: CQ-COMPARE-004
+    family: COMPARE
+    title: 장벽 크림과 수분 크림은 무엇이 다른가?
+    layer: common
+    primary_object_type: CompareObject
+    secondary_object_types:
+      - BoundaryObject
+      - ActionObject
+    risk_level: medium
+    priority: P1
+
+  - id: CQ-ING-006
+    family: ING
+    title: 두 성분을 함께 써도 되는가?
+    layer: common
+    primary_object_type: BoundaryObject
+    secondary_object_types:
+      - ProofObject
+      - AnswerObject
+    risk_level: high
+    priority: P1
+
+  - id: CQ-USE-004
+    family: USE
+    title: 자극을 줄이기 위한 도입/적응 스케줄은 어떻게 잡아야 하나?
+    layer: common
+    primary_object_type: ActionObject
+    secondary_object_types:
+      - BoundaryObject
+      - ProofObject
+    risk_level: high
+    priority: P1
+
+  - id: CQ-BOUNDARY-004
+    family: BOUNDARY
+    title: 일반 추천보다 전문가 상담이나 다른 대응이 필요한 상황은 언제인가?
+    layer: common
+    primary_object_type: BoundaryObject
+    secondary_object_types:
+      - ActionObject
+      - ProofObject
+    risk_level: high
+    priority: P1
+
+  - id: CQ-BRAND-001
+    family: BRAND
+    title: 이 브랜드는 어떤 피부 고민/상황에서 강점이 있는가?
+    layer: brand_specific
+    primary_object_type: AnswerObject
+    risk_level: medium
+    priority: P1
+
+  - id: CQ-BRAND-002
+    family: BRAND
+    title: 이 브랜드의 특정 제품은 누구에게 맞고 누구에게는 맞지 않는가?
+    layer: brand_specific
+    primary_object_type: AnswerObject
+    secondary_object_types:
+      - BoundaryObject
+      - ProofObject
+    risk_level: high
+    priority: P1
+
+  - id: CQ-BRAND-004
+    family: BRAND
+    title: 이 브랜드가 말하는 핵심 claim의 근거와 reviewer는 무엇인가?
+    layer: brand_specific
+    primary_object_type: ProofObject
+    risk_level: medium
+    priority: P1
+
+  - id: CQ-ACTION-002
+    family: ACTION
+    title: 지금은 바로 구매하는 게 맞나, 상담/체험이 먼저인가?
+    layer: common
+    primary_object_type: ActionObject
+    secondary_object_types:
+      - BoundaryObject
+      - ProofObject
+    risk_level: high
+    priority: P1

@@ -1,0 +1,66 @@
+MRIAlert:
+  type: object
+  required:
+    - alert_id
+    - mri_type
+    - entity_type
+    - entity_id
+    - metric_key
+    - severity
+    - status
+  properties:
+    alert_id:
+      type: string
+    mri_type:
+      type: string
+      enum: [D-MRI, B-MRI]
+    entity_type:
+      type: string
+    entity_id:
+      type: string
+    metric_key:
+      type: string
+    deviation:
+      type: number
+    severity:
+      type: string
+      enum: [low, medium, high, critical]
+    suspected_rca_codes:
+      type: array
+      items:
+        type: string
+    suggested_patch_type:
+      type: [string, "null"]
+    status:
+      type: string
+      enum: [open, acknowledged, routed, closed]
+
+MRISnapshot:
+  type: object
+  required:
+    - snapshot_id
+    - mri_type
+    - entity_type
+    - entity_id
+    - score
+    - grade
+    - measured_at
+  properties:
+    snapshot_id:
+      type: string
+    mri_type:
+      type: string
+    entity_type:
+      type: string
+    entity_id:
+      type: string
+    score:
+      type: number
+    grade:
+      type: string
+    dimensions:
+      type: object
+      additionalProperties: true
+    measured_at:
+      type: string
+      format: date-time

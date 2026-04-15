@@ -1,0 +1,138 @@
+ObjectBundle:
+  type: object
+  required:
+    - bundle_id
+    - scene_id
+    - object_ids
+  properties:
+    bundle_id:
+      type: string
+    scene_id:
+      type: string
+    object_ids:
+      type: array
+      minItems: 1
+      items:
+        type: string
+    missing_required_objects:
+      type: array
+      items:
+        type: string
+    variant_hints:
+      type: array
+      items:
+        type: string
+
+SurfaceRenderPayload:
+  type: object
+  required:
+    - projection_id
+    - surface_id
+    - variant
+    - slots
+  properties:
+    projection_id:
+      type: string
+    surface_id:
+      type: string
+    variant:
+      type: string
+    slots:
+      type: array
+      items:
+        $ref: '#/SurfaceSlot'
+
+SurfaceSlot:
+  type: object
+  required:
+    - slot_id
+    - slot_type
+    - required
+    - visible
+  properties:
+    slot_id:
+      type: string
+    slot_type:
+      type: string
+      enum: [hero, block, rail, card, inline]
+    required:
+      type: boolean
+    visible:
+      type: boolean
+    render_variant:
+      type: [string, "null"]
+    fallback_variant:
+      type: [string, "null"]
+    data:
+      type: object
+      additionalProperties: true
+
+BaseObject:
+  type: object
+  required:
+    - object_id
+    - object_type
+    - canonical_question_id
+    - status
+    - review_state
+    - version
+    - updated_at
+  properties:
+    object_id:
+      type: string
+    object_type:
+      type: string
+    canonical_question_id:
+      type: string
+    status:
+      $ref: './schemas-common.yaml#/Status'
+    review_state:
+      $ref: './schemas-common.yaml#/ReviewState'
+    version:
+      type: integer
+      minimum: 1
+    updated_at:
+      type: string
+      format: date-time
+
+AnswerObject:
+  allOf:
+    - $ref: '#/BaseObject'
+    - type: object
+      required:
+        - answer_short
+        - answer_full
+        - decision_criteria
+      properties:
+        answer_short:
+          type: string
+        answer_full:
+          type: string
+        decision_criteria:
+          type: array
+          minItems: 1
+          items:
+            type: object
+            required:
+              - label
+              - explanation
+            properties:
+              label:
+                type: string
+              explanation:
+                type: string
+        fit_summary:
+          type: object
+          additionalProperties: true
+        linked_proof_object_ids:
+          type: array
+          items:
+            type: string
+        linked_boundary_object_ids:
+          type: array
+          items:
+            type: string
+        linked_action_object_ids:
+          type: array
+          items:
+            type: string

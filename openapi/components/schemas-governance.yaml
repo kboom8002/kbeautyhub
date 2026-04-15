@@ -1,0 +1,73 @@
+PatchTicket:
+  type: object
+  required:
+    - patch_ticket_id
+    - entity_type
+    - entity_id
+    - severity
+    - status
+  properties:
+    patch_ticket_id:
+      type: string
+    entity_type:
+      type: string
+    entity_id:
+      type: string
+    trigger_source:
+      type: string
+    issue_type:
+      type: string
+    severity:
+      type: string
+      enum: [low, medium, high, critical]
+    primary_rca_codes:
+      type: array
+      items:
+        type: string
+    suggested_patch_types:
+      type: array
+      items:
+        type: string
+    status:
+      type: string
+      enum:
+        - open
+        - triaged
+        - in_fix
+        - review_pending
+        - retest_pending
+        - closed
+        - blocked
+
+RetestRun:
+  type: object
+  required:
+    - retest_run_id
+    - patch_ticket_id
+    - entity_type
+    - entity_id
+    - status
+  properties:
+    retest_run_id:
+      type: string
+    patch_ticket_id:
+      type: string
+    entity_type:
+      type: string
+    entity_id:
+      type: string
+    test_scope:
+      type: array
+      items:
+        type: string
+    baseline_window:
+      type: string
+    observation_window:
+      type: string
+    success_criteria:
+      type: array
+      items:
+        type: string
+    status:
+      type: string
+      enum: [planned, running, passed, failed, inconclusive]

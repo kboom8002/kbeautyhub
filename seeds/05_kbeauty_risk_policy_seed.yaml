@@ -1,0 +1,53 @@
+version: v1
+vertical_id: V-KBS
+
+risk_policy:
+  high_risk_topics:
+    - sensitive_skin_fit
+    - barrier_recovery
+    - active_combo_safety
+    - irritation_recovery
+    - consult_needed_cases
+
+  boundary_required_for:
+    - CQ-FIT-004
+    - CQ-FIT-005
+    - CQ-ING-006
+    - CQ-USE-004
+    - CQ-BOUNDARY-004
+    - CQ-ACTION-002
+    - CQ-BRAND-002
+
+  proof_required_for:
+    - CQ-FIT-004
+    - CQ-FIT-005
+    - CQ-ING-006
+    - CQ-BRAND-004
+
+  consult_first_default_scenes:
+    - QIS-KBS-002
+    - QIS-KBS-010
+    - QIS-KBS-015
+    - QIS-KBS-018
+    - QIS-KBS-020
+
+  surface_overrides:
+    high_risk:
+      boundary_placement: early
+      trust_visibility: required
+      buy_cta_policy: secondary_or_hidden
+      consult_cta_policy: primary
+      safer_route_required: true
+
+  publish_blocks:
+    - when: high_risk_and_boundary_missing
+      reason_code: BOUNDARY_REQUIRED
+    - when: stale_critical_evidence_only
+      reason_code: EVIDENCE_STALE_BLOCKED
+    - when: reviewer_scope_invalid
+      reason_code: REVIEW_SCOPE_INVALID
+
+  mri_alert_thresholds:
+    boundary_view_rate_min_high_risk: 0.45
+    safe_handoff_rate_min_high_risk: 0.60
+    trust_expand_rate_min: 0.20
