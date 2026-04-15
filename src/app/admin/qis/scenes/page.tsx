@@ -4,12 +4,20 @@ import { QISSceneService } from '@/domain/qis-scene';
 import SceneConfiguratorClient from './SceneConfiguratorClient';
 
 export default async function SceneConfiguratorPage() {
-  const cqs = await CanonicalQuestionService.list();
-  const scenes = await QISSceneService.list();
+  let cqs: any[] = [];
+  let scenes: any[] = [];
+  try {
+    [cqs, scenes] = await Promise.all([
+      CanonicalQuestionService.list(),
+      QISSceneService.list(),
+    ]);
+  } catch (err) {
+    console.error('[SceneConfiguratorPage] DB fetch failed:', err);
+  }
 
   return (
     <div className="mt-8">
-      <SceneConfiguratorClient cqs={cqs} initialScenes={scenes} />
+      <SceneConfiguratorClient cqs={cqs ?? []} initialScenes={scenes ?? []} />
     </div>
   );
 }

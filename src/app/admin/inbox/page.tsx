@@ -4,7 +4,12 @@ import InboxClient from './InboxClient';
 import { fetchUnsortedInbox } from '@/app/actions/inbox-actions';
 
 export default async function InboxPage() {
-  const initialItems = await fetchUnsortedInbox();
+  let initialItems: any[] = [];
+  try {
+    initialItems = await fetchUnsortedInbox();
+  } catch (err) {
+    console.error('[InboxPage] DB fetch failed:', err);
+  }
 
   return (
     <div className="max-w-6xl mx-auto space-y-10">
@@ -16,7 +21,7 @@ export default async function InboxPage() {
         <p className="text-slate-400 mt-2 text-lg">Central deposit for raw user queries before they are canonicalized.</p>
       </header>
 
-      <InboxClient initialItems={initialItems} />
+      <InboxClient initialItems={initialItems ?? []} />
     </div>
   );
 }
