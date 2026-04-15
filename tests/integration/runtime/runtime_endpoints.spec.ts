@@ -45,7 +45,7 @@ describe('Runtime API Endpoints & Trace ID', () => {
       headers: { 'x-trace-id': 'trace-compose-456' }
     });
 
-    const res = await composePOST(req, { params: { scene_id: 'SCENE-TEST-COMP' } });
+    const res = await composePOST(req, { params: Promise.resolve({ scene_id: 'SCENE-TEST-COMP' }) });
     const data = await res.json();
 
     expect(res.headers.get('x-trace-id')).toBe('trace-compose-456');

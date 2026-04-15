@@ -10,10 +10,11 @@ describe('Graph Edge Domain', () => {
       target_node_type: 'AnswerObject',
       target_node_id: 'OBJ-TEST-001', // Same target as source
       edge_type: 'RELATES_TO',
+      status: 'ACTIVE',
     };
 
     // Service level and DB CHECK constraint prevent this
-    await expect(GraphEdgeService.upsert(selfLoopInput)).rejects.toThrow('GRAPH_EDGE_SELF_LOOP_INVALID');
+    await expect(GraphEdgeService.upsert(selfLoopInput as any)).rejects.toThrow('GRAPH_EDGE_SELF_LOOP_INVALID');
   });
 
   it('allows saving an edge with different source and target', async () => {
@@ -24,9 +25,10 @@ describe('Graph Edge Domain', () => {
       target_node_type: 'AnswerObject',
       target_node_id: 'OBJ-TEST-002', 
       edge_type: 'RELATES_TO',
+      status: 'ACTIVE',
     };
 
-    const result = await GraphEdgeService.upsert(validEdgeInput);
+    const result = await GraphEdgeService.upsert(validEdgeInput as any);
     expect(result.edge_id).toBe('EDGE-TEST-002');
   });
 });

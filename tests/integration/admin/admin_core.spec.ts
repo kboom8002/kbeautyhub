@@ -72,7 +72,7 @@ describe('Admin Console APIs & RBAC', () => {
         headers: { 'x-admin-role': 'reviewer' }, // a reviewer
         body: JSON.stringify({ action: 'PUBLISH' })
       });
-      const res = await putObjectDetail(req, { params: { object_id: '1' } });
+      const res = await putObjectDetail(req, { params: Promise.resolve({ object_id: '1' }) });
       expect(res.status).toBe(403);
     });
 
@@ -82,7 +82,7 @@ describe('Admin Console APIs & RBAC', () => {
         headers: { 'x-admin-role': 'brand_operator' }, // lacks EDIT_SHARED_TEMPLATE
         body: JSON.stringify({ tenant_id: 'SYSTEM', title: 'Hacked' })
       });
-      const res = await putObjectDetail(req, { params: { object_id: 'SYSTEM_OBJ' } });
+      const res = await putObjectDetail(req, { params: Promise.resolve({ object_id: 'SYSTEM_OBJ' }) });
       expect(res.status).toBe(403);
     });
   });
@@ -92,7 +92,7 @@ describe('Admin Console APIs & RBAC', () => {
       const req = new Request('http://localhost/api/v1/admin/objects/OBJ-ADMIN-TEST', {
         headers: { 'x-admin-role': 'analyst' } // Read_ALL mapped
       });
-      const res = await getObjectDetail(req, { params: { object_id: 'OBJ-ADMIN-TEST' } });
+      const res = await getObjectDetail(req, { params: Promise.resolve({ object_id: 'OBJ-ADMIN-TEST' }) });
       const data = await res.json();
 
       // 2. object studio detail에서 missing boundary/proof state 반환

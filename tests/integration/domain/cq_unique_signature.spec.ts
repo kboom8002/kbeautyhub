@@ -11,26 +11,28 @@ describe('Canonical Question Domain', () => {
     const input1 = {
       canonical_question_id: 'CQ-TEST-001',
       vertical_id: 'V-TEST',
-      family_code: 'ENTRY',
+      family_code: 'QC-01',
       title: 'First Question',
       signature: 'signature-ab12',
-      primary_object_type: 'AnswerObject'
+      primary_object_type: 'AnswerObject',
+      status: 'ACTIVE',
     };
 
     const input2 = {
       canonical_question_id: 'CQ-TEST-002', // Different ID
       vertical_id: 'V-TEST',
-      family_code: 'ENTRY',
+      family_code: 'QC-01',
       title: 'Duplicate Signature Question',
       signature: 'signature-ab12', // Same Signature
-      primary_object_type: 'AnswerObject'
+      primary_object_type: 'AnswerObject',
+      status: 'ACTIVE',
     };
 
     // First one succeeds
-    await CanonicalQuestionService.upsert(input1);
+    await CanonicalQuestionService.upsert(input1 as any);
 
     // Second one with same signature should fail
-    await expect(CanonicalQuestionService.upsert(input2)).rejects.toThrow('CQ_SIGNATURE_DUPLICATE');
+    await expect(CanonicalQuestionService.upsert(input2 as any)).rejects.toThrow('CQ_SIGNATURE_DUPLICATE');
 
     // Clean up
     const supabase = createAdminClient();

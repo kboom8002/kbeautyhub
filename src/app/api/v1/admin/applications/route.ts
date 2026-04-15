@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { Prisma } from '@prisma/client';
 import { verifyAuthToken } from '@/lib/auth';
 
 export async function GET(req: NextRequest) {
@@ -37,7 +38,7 @@ export async function PUT(req: NextRequest) {
     }
 
     // Process Transaction for approval
-    const result = await prisma.$transaction(async (tx) => {
+    const result = await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       const application = await tx.tenantApplication.findUnique({
         where: { application_id }
       });

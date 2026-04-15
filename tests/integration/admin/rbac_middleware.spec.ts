@@ -88,7 +88,7 @@ describe('Sprint 2: Edge Middleware & Tenant Isolation', () => {
         }
       });
 
-      const res = await GET(req, { params: { object_id: 'OBJ-ADMIN-TEST' } });
+      const res = await GET(req, { params: Promise.resolve({ object_id: 'OBJ-ADMIN-TEST' }) });
       expect(res.status).toBe(200);
     });
 
@@ -120,7 +120,7 @@ describe('Sprint 2: Edge Middleware & Tenant Isolation', () => {
         })
       });
 
-      const res = await PUT(req, { params: { object_id: 'TARGET-OBJ' } });
+      const res = await PUT(req, { params: Promise.resolve({ object_id: 'TARGET-OBJ' }) });
       const data = await res.json();
       expect(res.status).toBe(403);
       expect(data.error).toContain('FORBIDDEN: Cross-Tenant Access Denied');
