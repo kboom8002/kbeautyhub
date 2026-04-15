@@ -89,7 +89,6 @@ export default function LoginPage() {
               className="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none"
               value={password}
               onChange={e => setPassword(e.target.value)}
-              readOnly
             />
           </div>
           <button 
